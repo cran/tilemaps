@@ -20,14 +20,34 @@ ggplot(governors) +
                fun.geometry = function(x) st_centroid(x)) +
   theme_void()
 
+## ----fig.height=3,fig.width=4,fig.align='center'------------------------------
+all_states <- governors %>%
+  add_row(abbreviation = "AK", party = "Republican",
+          tile_map = create_island(governors$tile_map, "lower left")) %>%
+  add_row(abbreviation = "HI", party = "Democrat",
+          tile_map = create_island(governors$tile_map, c(-12050000, 3008338)))
+
+ggplot(all_states) +
+  geom_sf(aes(geometry = tile_map)) +
+  geom_sf_text(aes(geometry = tile_map, label = abbreviation),
+               fun.geometry = function(x) st_centroid(x)) +
+  theme_void()
+
+## ----echo=FALSE---------------------------------------------------------------
+all_states <- all_states %>%
+  mutate(party = factor(party, c("Republican", "Democrat")))
+
 ## ----fig.height=4.5, fig.width=5.5, fig.align='center'------------------------
-ggplot(governors) +
+ggplot(all_states) +
   geom_sf(aes(geometry = tile_map, fill = party)) +
   geom_sf_text(aes(geometry = tile_map, label = abbreviation),
                fun.geometry = function(x) st_centroid(x)) +
   scale_fill_brewer(palette = "Set1") +
   ggtitle("Party Affiliation of United States Governors (2020)") +
   theme_void()
+
+## ----eval=FALSE---------------------------------------------------------------
+#  st_write(governors$tile_map, "us_tilemap.shp")
 
 ## ----fig.height=6, fig.width=7, fig.align='center'----------------------------
 us_maps <- many_maps(governors$geometry, governors$abbreviation,

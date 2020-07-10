@@ -1,13 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tilemaps
+# tilemaps <img src="man/figures/logo.png" align="right" width="140" />
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/kaerosen/tilemaps/workflows/R-CMD-check/badge.svg)](https://github.com/kaerosen/tilemaps/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/tilemaps)](https://CRAN.R-project.org/package=tilemaps)
 <!-- badges: end -->
+
+## Overview
 
 The `tilemaps` package implements an algorithm for generating maps,
 known as tile maps, in which each region is represented by a single tile
@@ -24,6 +26,12 @@ user to generate a single tile map or many tile maps, which can be
 compared by using cost functions or by plotting the maps.
 
 ## Installation
+
+You can install the latest release from CRAN with:
+
+``` r
+install.packages("tilemaps")
+```
 
 You can install the development version from
 [GitHub](https://github.com/) with:
@@ -56,7 +64,7 @@ ggplot(governors) +
   theme_void()
 ```
 
-<img src="man/figures/README-single-map-1.png" width="100%" />
+<img src="man/figures/README-single-map-1.png" width="100%" style="display: block; margin: auto;" />
 
 The `generate_map()` function requires an object of class `sfc_POLYGON`
 or `sfc_MULTIPOLYGON` as input. If the coordinates of the `sfc` object
@@ -64,7 +72,26 @@ are in terms of longitude and latitude, the coordinates will need to be
 transformed to a planar projection before creating the tile map. The
 `square` argument controls whether the tiles are squares or hexagons,
 and the `flat_topped` argument controls whether or not hexagons are
-flat-topped.
+flat-topped. The `generate_map()` function only works for contiguous
+regions. However, after a tile map has been generated, the
+`create_island()` function can be used to add islands to the layout of
+the tile map.
+
+``` r
+all_states <- governors %>%
+  add_row(abbreviation = "AK", party = "Republican",
+          tile_map = create_island(governors$tile_map, "lower left")) %>%
+  add_row(abbreviation = "HI", party = "Democrat",
+          tile_map = create_island(governors$tile_map, c(-12050000, 3008338)))
+
+ggplot(all_states) +
+  geom_sf(aes(geometry = tile_map)) +
+  geom_sf_text(aes(geometry = tile_map, label = abbreviation),
+               fun.geometry = function(x) st_centroid(x)) +
+  theme_void()
+```
+
+<img src="man/figures/README-add-islands-1.png" width="100%" style="display: block; margin: auto;" />
 
 Once a tile map has been created, coloring tiles according to another
 variable is simple. In the following code, the states are colored
@@ -74,7 +101,7 @@ regular map, because each state has only one governor, regardless of the
 area or population of the state.
 
 ``` r
-ggplot(governors) +
+ggplot(all_states) +
   geom_sf(aes(geometry = tile_map, fill = party)) +
   geom_sf_text(aes(geometry = tile_map, label = abbreviation),
                fun.geometry = function(x) st_centroid(x)) +
@@ -83,7 +110,7 @@ ggplot(governors) +
   theme_void()
 ```
 
-<img src="man/figures/README-governor-map-1.png" width="100%" />
+<img src="man/figures/README-governor-map-1.png" width="100%" style="display: block; margin: auto;" />
 
 To create and compare more than one tile map, the `many_maps()` function
 can be used. In the following example, 16 candidate tile maps are
@@ -95,7 +122,7 @@ us_maps <- many_maps(governors$geometry, governors$abbreviation,
                      smoothness = c(0, 20), shift = list(c(0,0), c(0,0.5)))
 ```
 
-<img src="man/figures/README-many-maps-1.png" width="100%" />
+<img src="man/figures/README-many-maps-1.png" width="100%" style="display: block; margin: auto;" />
 
 The `prop`, `interpolate`, `smoothness`, and `shift` arguments add
 variation at different steps in the algorithm to create different

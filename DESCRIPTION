@@ -1,6 +1,6 @@
 Package: tilemaps
 Title: Generate Tile Maps
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Kaelyn",
            family = "Rosenberg",
@@ -22,8 +22,8 @@ VignetteBuilder: knitr
 RoxygenNote: 7.1.0
 Depends: R (>= 2.10)
 NeedsCompilation: no
-Packaged: 2020-06-13 16:33:13 UTC; kaelynrosenberg
+Packaged: 2020-07-09 22:17:04 UTC; kaelynrosenberg
 Author: Kaelyn Rosenberg [aut, cre]
 Maintainer: Kaelyn Rosenberg <kaerosenberg@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-06-19 10:50:02 UTC
+Date/Publication: 2020-07-10 04:20:02 UTC
