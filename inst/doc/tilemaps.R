@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -47,7 +47,7 @@ ggplot(all_states) +
   theme_void()
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  st_write(governors$tile_map, "us_tilemap.shp")
+# st_write(governors$tile_map, "us_tilemap.shp")
 
 ## ----fig.height=6, fig.width=7, fig.align='center'----------------------------
 us_maps <- many_maps(governors$geometry, governors$abbreviation,
@@ -64,7 +64,7 @@ ggplot(governors) +
   theme_void()
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  plot_many_maps(us_maps$map, governors$abbreviation)
+# plot_many_maps(us_maps$map, governors$abbreviation)
 
 ## ----echo=FALSE, fig.height=5, fig.width=6, fig.align='center'----------------
 neighbors <- st_touches(governors$geometry)
