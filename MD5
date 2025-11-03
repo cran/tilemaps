@@ -1,13 +1,13 @@
-fbe73928c4bfb0994e311f9a4967d597 *DESCRIPTION
+28844ddfaf678f331f166c3def9d43fc *DESCRIPTION
 353eecff2b13eec4f179df638ded232b *NAMESPACE
-bb262077c826c1f1c821415573782a14 *NEWS.md
+28e4e4a6d21c823f47a4d7fe7c76b07c *NEWS.md
 20d12adbef8d2767d9e3a5ace73c2446 *R/assign_regions.R
 6da0bd6bcbdbf855653e76d0e8a39db5 *R/cost_functions.R
 fb3e59f5fe8147bde18106bca44f85d6 *R/create_island.R
 0a6fd0e831bfbb1eb2fa360a4feb684b *R/data.R
 0c6ef630cdd825d29839cdeb4b7e3886 *R/fit_tiles.R
-bcfdfb4f18cf39756bd21ec475490a55 *R/generate_map.R
-3f16de2529315ae668ba2786a829d090 *R/many_maps.R
+d82e26034839a27a4168674d6c6fe8ac *R/generate_map.R
+fad3f86887956391be7dc004a215d922 *R/many_maps.R
 30ba12da1a0e228a9a710a7ae63b4f4e *R/plot_many_maps.R
 04de18861cd40d174237de8aa3e4a824 *R/transform_boundary.R
 6e5d2ac054a3164670832db238d01320 *R/transform_centroids.R
@@ -16,7 +16,7 @@ e26774d6659636b2f1bedf1e259c0f40 *build/vignette.rds
 7e615ab7842473401a34596cded0e597 *data/governors.rda
 f205699108e54e5642fe2009105fca9e *inst/doc/tilemaps.R
 290966dccfe2914f158299a62eca18e6 *inst/doc/tilemaps.Rmd
-6c59704e04d4b862da65aa59dcd01ed4 *inst/doc/tilemaps.html
+0109940dc24f5d5169e88b8273136d6f *inst/doc/tilemaps.html
 f8e16329ed8c9c5134449864e0b22fd0 *man/create_island.Rd
 19c7ee22024444ec7b4e1b10217cba7a *man/figures/README-add-islands-1.png
 5ebe5ae8a7da6caa2a166f1e8721f31f *man/figures/README-governor-map-1.png
